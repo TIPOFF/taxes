@@ -1,7 +1,7 @@
 # Laravel Package for implementing Ecommerce taxes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tipoff/taxes.svg?style=flat-square)](https://packagist.org/packages/tipoff/taxes)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/tipoff/taxes/run-tests?label=tests)](https://github.com/tipoff/taxes/actions?query=workflow%3ATests+branch%3Amaster)
+![Tests](https://github.com/tipoff/taxes/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/tipoff/taxes.svg?style=flat-square)](https://packagist.org/packages/tipoff/taxes)
 
 
