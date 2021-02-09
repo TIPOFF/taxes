@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tipoff\Taxes;
 
 use Illuminate\Support\Str;
@@ -9,6 +11,12 @@ use Tipoff\Taxes\Commands\TaxesCommand;
 
 class TaxesServiceProvider extends PackageServiceProvider
 {
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        parent::boot();
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -18,24 +26,7 @@ class TaxesServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('taxes')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('2020_02_16_110000_create_taxes_table')
-            ->hasCommand(TaxesCommand::class);
+            ->hasConfigFile();
     }
 
-    /**
-     * Using packageBooted lifecycle hooks to override the migration file name.
-     * We want to keep the old filename for now.
-     */
-    public function packageBooted()
-    {
-        foreach ($this->package->migrationFileNames as $migrationFileName) {
-            if (! $this->migrationFileExists($migrationFileName)) {
-                $this->publishes([
-                    $this->package->basePath("/../database/migrations/{$migrationFileName}.php.stub") => database_path('migrations/' . Str::finish($migrationFileName, '.php')),
-                ], "{$this->package->name}-migrations");
-            }
-        }
-    }
 }
