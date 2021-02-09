@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes;
 
-use Illuminate\Support\Str;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tipoff\Taxes\Commands\TaxesCommand;
 
 class TaxesServiceProvider extends PackageServiceProvider
 {
@@ -28,5 +26,4 @@ class TaxesServiceProvider extends PackageServiceProvider
             ->name('taxes')
             ->hasConfigFile();
     }
-
 }
