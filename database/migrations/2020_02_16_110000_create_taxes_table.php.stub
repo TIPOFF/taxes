@@ -9,16 +9,13 @@ class CreateTaxesTable extends Migration
     public function up()
     {
         Schema::create('taxes', function (Blueprint $table) {
-            $userModel = config('tipoff.model_class.user');
-            $userTable = (new $userModel)->getTable();
-
             $table->id();
             $table->string('name')->unique(); // Internal reference name
             $table->string('title'); // Shows in book online checkout flow.
             $table->string('slug')->unique()->index();
             $table->unsignedDecimal('percent', 5, 2);
             $table->string('applies_to')->default('order'); // Application. Definitions include: 'order', 'product', 'booking'
-            $table->foreignId('creator_id')->references('id')->on($userTable);
+            $table->foreignIdFor(app('user'), 'creator_id');
             $table->timestamps();
         });
     }
