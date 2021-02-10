@@ -2,7 +2,7 @@
 
 namespace Tipoff\Taxes\Policies;
 
-use App\Models\User;
+use app('user') as User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Tipoff\Taxes\Models\Tax;
 
@@ -13,7 +13,7 @@ class TaxPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  app('user') $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,7 +24,6 @@ class TaxPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
      * @param Tax $tax
      * @return mixed
      */
