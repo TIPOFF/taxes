@@ -24,8 +24,8 @@ class TaxPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Tax  $tax
+     * @param \App\Models\User $user
+     * @param Tax $tax
      * @return mixed
      */
     public function view(User $user, Tax $tax)
@@ -47,8 +47,8 @@ class TaxPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Tax  $tax
+     * @param \App\Models\User $user
+     * @param Tax $tax
      * @return mixed
      */
     public function update(User $user, Tax $tax)
@@ -59,8 +59,8 @@ class TaxPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Tax  $tax
+     * @param \App\Models\User $user
+     * @param Tax $tax
      * @return mixed
      */
     public function delete(User $user, Tax $tax)
@@ -71,8 +71,8 @@ class TaxPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Tax  $tax
+     * @param \App\Models\User $user
+     * @param Tax $tax
      * @return mixed
      */
     public function restore(User $user, Tax $tax)
@@ -83,8 +83,8 @@ class TaxPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Tax  $tax
+     * @param \App\Models\User $user
+     * @param Tax $tax
      * @return mixed
      */
     public function forceDelete(User $user, Tax $tax)
