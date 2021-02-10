@@ -28,7 +28,7 @@ class TaxFactory extends Factory
             'title'      => $sentence,
             'percent'    => $this->faker->numberBetween(1, 50),
             'applies_to' => $this->faker->randomElement(['product', 'booking']),
-            'creator_id' => randomOrCreate(config('tipoff.model_class.user')),
+            'creator_id' => randomOrCreate(app('user')),
         ];
     }
 }

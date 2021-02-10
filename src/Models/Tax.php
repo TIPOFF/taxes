@@ -33,22 +33,22 @@ class Tax extends BaseModel
 
     public function creator()
     {
-        return $this->belongsTo(config('tipoff.model_class.user'), 'creator_id');
+        return $this->belongsTo(app('user'), 'creator_id');
     }
 
     public function bookings()
     {
-        return $this->hasMany(config('tipoff.model_class.booking'));
+        return $this->hasMany(app('booking'));
     }
 
     public function locationBookingTaxes()
     {
-        return $this->hasMany(config('tipoff.model_class.location'), 'booking_tax_id');
+        return $this->hasMany(app('location'), 'booking_tax_id');
     }
 
     public function locationProductTaxes()
     {
-        return $this->hasMany(config('tipoff.model_class.location'), 'product_tax_id');
+        return $this->hasMany(app('location'), 'product_tax_id');
     }
 
     /**
