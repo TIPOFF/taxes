@@ -2,9 +2,9 @@
 
 namespace Tipoff\Taxes\Policies;
 
-use Tipoff\Taxes\Models\Tax;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Taxes\Models\Tax;
 
 class TaxPolicy
 {
