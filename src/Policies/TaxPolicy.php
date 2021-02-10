@@ -9,7 +9,7 @@ class TaxPolicy
 {
     use HandlesAuthorization;
     
-    /** @var Model $roomModel */
+    /** @var Model $user */
     $user = app('user');
 
     /**
