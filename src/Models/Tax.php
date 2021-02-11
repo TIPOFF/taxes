@@ -17,17 +17,6 @@ class Tax extends BaseModel
     protected $casts = [
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($tax) {
-            if (auth()->check()) {
-                $tax->creator_id = auth()->id();
-            }
-        });
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';
