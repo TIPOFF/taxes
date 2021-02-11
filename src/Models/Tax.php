@@ -1,11 +1,11 @@
 <?php namespace Tipoff\Taxes\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
 
 class Tax extends BaseModel
 {
-    use HasFactory;
+    use HasPackageFactory;
 
     const APPLIES_TO_PRODUCT = 'product';
     const APPLIES_TO_BOOKING = 'booking';
