@@ -2,9 +2,11 @@
 
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasCreator;
 
 class Tax extends BaseModel
 {
+    use HasCreator;
     use HasPackageFactory;
 
     const APPLIES_TO_PRODUCT = 'product';
@@ -29,11 +31,6 @@ class Tax extends BaseModel
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function creator()
-    {
-        return $this->belongsTo(app('user'), 'creator_id');
     }
 
     public function bookings()
