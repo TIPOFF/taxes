@@ -1,10 +1,12 @@
 <?php namespace Tipoff\Taxes\Models;
 
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 
 class Tax extends BaseModel
 {
+    use HasCreator;
     use HasPackageFactory;
 
     const APPLIES_TO_PRODUCT = 'product';
@@ -15,25 +17,9 @@ class Tax extends BaseModel
     protected $casts = [
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($tax) {
-            if (auth()->check()) {
-                $tax->creator_id = auth()->id();
-            }
-        });
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function creator()
-    {
-        return $this->belongsTo(app('user'), 'creator_id');
     }
 
     public function bookings()
