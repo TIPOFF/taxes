@@ -9,6 +9,8 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Policies\TaxPolicy;
+use Tipoff\Support\TipoffPackage;
+use Tipoff\Support\TipoffServiceProvider;
 
 class TaxesServiceProvider extends PackageServiceProvider
 {
@@ -27,6 +29,12 @@ class TaxesServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
+            ->hasModelInterfaces([
+                TaxInterface::class => Tax::class,
+            ])
+            ->hasPolicies([
+                Tax::class => TaxPolicy::class,
+            ])
             ->name('taxes')
             ->hasConfigFile()
             ->hasViews();
