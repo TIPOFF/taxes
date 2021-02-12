@@ -1,11 +1,13 @@
 <?php namespace Tipoff\Taxes\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
+use Tipoff\Support\Traits\HasPackageFactory;
 
 class Tax extends BaseModel
 {
-    use HasFactory;
+    use HasCreator;
+    use HasPackageFactory;
 
     const APPLIES_TO_PRODUCT = 'product';
     const APPLIES_TO_BOOKING = 'booking';
@@ -15,40 +17,24 @@ class Tax extends BaseModel
     protected $casts = [
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($tax) {
-            if (auth()->check()) {
-                $tax->creator_id = auth()->id();
-            }
-        });
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-    public function creator()
-    {
-        return $this->belongsTo(config('tipoff.model_class.user'), 'creator_id');
-    }
-
     public function bookings()
     {
-        return $this->hasMany(config('tipoff.model_class.booking'));
+        return $this->hasMany(app('booking'));
     }
 
     public function locationBookingTaxes()
     {
-        return $this->hasMany(config('tipoff.model_class.location'), 'booking_tax_id');
+        return $this->hasMany(app('location'), 'booking_tax_id');
     }
 
     public function locationProductTaxes()
     {
-        return $this->hasMany(config('tipoff.model_class.location'), 'product_tax_id');
+        return $this->hasMany(app('location'), 'product_tax_id');
     }
 
     /**
