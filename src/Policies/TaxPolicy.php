@@ -1,93 +1,48 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tipoff\Taxes\Policies;
 
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Support\Contracts\Models\UserInterface;
 use Tipoff\Taxes\Models\Tax;
 
-class TaxPolicy
+class SignaturePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
+    public function viewAny(UserInterface $user): bool
     {
         return $user->hasPermissionTo('view taxes') ? true : false;
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param \App\Models\User $user
-     * @param Tax $tax
-     * @return mixed
-     */
-    public function view(User $user, Tax $tax)
+    public function view(UserInterface $user, Tax $tax): bool
     {
         return $user->hasPermissionTo('view taxes') ? true : false;
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return $user->hasPermissionTo('create taxes') ? true : false;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param \App\Models\User $user
-     * @param Tax $tax
-     * @return mixed
-     */
-    public function update(User $user, Tax $tax)
-    {
-        return $user->hasPermissionTo('update taxes') ? true : false;
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param \App\Models\User $user
-     * @param Tax $tax
-     * @return mixed
-     */
-    public function delete(User $user, Tax $tax)
+    public function create(UserInterface $user): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param \App\Models\User $user
-     * @param Tax $tax
-     * @return mixed
-     */
-    public function restore(User $user, Tax $tax)
+    public function update(UserInterface $user, Tax $tax): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param \App\Models\User $user
-     * @param Tax $tax
-     * @return mixed
-     */
-    public function forceDelete(User $user, Tax $tax)
+    public function delete(UserInterface $user, Tax $tax): bool
+    {
+        return false;
+    }
+
+    public function restore(UserInterface $user, Tax $tax): bool
+    {
+        return false;
+    }
+
+    public function forceDelete(UserInterface $user, Tax $tax): bool
     {
         return false;
     }
