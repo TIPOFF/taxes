@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes\Tests;
 
+use Spatie\Permission\PermissionServiceProvider;
+use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\Taxes\TaxesServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
@@ -14,6 +16,8 @@ class TestCase extends BaseTestCase
     {
         return [
             SupportServiceProvider::class,
+            AuthorizationServiceProvider::class,
+            PermissionServiceProvider::class,
             TaxesServiceProvider::class,
         ];
     }

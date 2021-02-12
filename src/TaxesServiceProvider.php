@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes;
 
+use Illuminate\Support\Facades\Gate;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Tipoff\Taxes\Models\Tax;
+use Tipoff\Taxes\Policies\TaxPolicy;
 
 class TaxesServiceProvider extends PackageServiceProvider
 {
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
         parent::boot();
     }
 
@@ -24,6 +28,12 @@ class TaxesServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('taxes')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasViews();
+    }
+
+    public function registeringPackage()
+    {
+        Gate::policy(Tax::class, TaxPolicy::class);
     }
 }
