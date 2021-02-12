@@ -12,8 +12,6 @@ class Tax extends BaseModel
     const APPLIES_TO_PRODUCT = 'product';
     const APPLIES_TO_BOOKING = 'booking';
 
-    protected $guarded = ['id'];
-
     protected $casts = [
     ];
 
