@@ -7,8 +7,8 @@ namespace Tipoff\Taxes\Tests;
 use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
-use Tipoff\TestSupport\BaseTestCase;
 use Tipoff\Taxes\TaxesServiceProvider;
+use Tipoff\TestSupport\BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
