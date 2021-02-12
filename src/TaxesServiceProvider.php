@@ -9,8 +9,6 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Policies\TaxPolicy;
-use Tipoff\Support\TipoffPackage;
-use Tipoff\Support\TipoffServiceProvider;
 
 class TaxesServiceProvider extends PackageServiceProvider
 {
