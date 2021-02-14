@@ -46,10 +46,7 @@
         "laravel": {
             "providers": [
                 "Tipoff\\Taxes\\TaxesServiceProvider"
-            ],
-            "aliases": {
-                "Taxes": "Tipoff\\Taxes\\TaxesFacade"
-            }
+            ]
         }
     },
     "repositories": [
