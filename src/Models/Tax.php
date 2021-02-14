@@ -1,4 +1,8 @@
-<?php namespace Tipoff\Taxes\Models;
+<?php 
+
+declare(strict_types=1);
+
+namespace Tipoff\Taxes\Models;
 
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
