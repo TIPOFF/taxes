@@ -1,4 +1,8 @@
-<?php namespace Tipoff\Taxes\Database\Factories;
+<?php 
+
+declare(strict_types=1);
+
+namespace Tipoff\Taxes\Database\Factories;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
