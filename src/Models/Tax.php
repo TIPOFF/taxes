@@ -63,6 +63,6 @@ class Tax extends BaseModel
                 break;
         }
 
-        return $tax;
+        return (int) $tax;
     }
 }
