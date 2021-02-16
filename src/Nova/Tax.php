@@ -2,8 +2,6 @@
 
 namespace Tipoff\Taxes\Nova;
 
-use Tipoff\Support\Nova\BaseResource;
-use Tipoff\Taxes\Models\Tax as TaxModel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -15,6 +13,8 @@ use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
+use Tipoff\Support\Nova\BaseResource;
+use Tipoff\Taxes\Models\Tax as TaxModel;
 
 class Tax extends BaseResource
 {
