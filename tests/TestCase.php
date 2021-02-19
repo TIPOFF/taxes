@@ -20,7 +20,7 @@ class TestCase extends BaseTestCase
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
             TaxesServiceProvider::class,
-            LocationsServiceProvider::class
+            LocationsServiceProvider::class,
         ];
     }
 }
