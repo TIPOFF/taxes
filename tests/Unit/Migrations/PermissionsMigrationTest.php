@@ -6,6 +6,7 @@ namespace Tipoff\Taxes\Tests\Unit\Migrations;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Permission;
 use Tipoff\Taxes\Tests\TestCase;
 
 class PermissionsMigrationTest extends TestCase
@@ -16,6 +17,14 @@ class PermissionsMigrationTest extends TestCase
     public function permissions_seeded()
     {
         $this->assertTrue(Schema::hasTable('permissions'));
-        $this->assertDatabaseCount('permissions', 4);
+
+        $seededPermissions = app(Permission::class)->whereIn('name', [
+            'view taxes',
+            'create taxes',
+            'update taxes',
+            'delete taxes'
+        ])->pluck('name');
+
+        $this->assertCount(4, $seededPermissions);
     }
 }
