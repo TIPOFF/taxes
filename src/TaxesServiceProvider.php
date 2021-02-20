@@ -6,7 +6,9 @@ namespace Tipoff\Taxes;
 
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
+use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Models\Tax;
+use Tipoff\Taxes\Policies\LocationTaxPolicy;
 use Tipoff\Taxes\Policies\TaxPolicy;
 
 class TaxesServiceProvider extends TipoffServiceProvider
@@ -15,7 +17,12 @@ class TaxesServiceProvider extends TipoffServiceProvider
     {
         $package
             ->hasPolicies([
-                Tax::class => TaxPolicy::class,
+                Tax::class         => TaxPolicy::class,
+                LocationTax::class => LocationTaxPolicy::class
+            ])
+            ->hasNovaResources([
+                \Tipoff\Taxes\Nova\LocationTax::class,
+                \Tipoff\Taxes\Nova\Tax::class
             ])
             ->name('taxes')
             ->hasConfigFile();
