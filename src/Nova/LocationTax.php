@@ -18,7 +18,7 @@ class LocationTax extends BaseResource
     public static $title = 'id';
 
     public static $search = [
-        'id'
+        'id',
     ];
 
     public static $group = 'Operations Units';

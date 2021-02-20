@@ -17,12 +17,12 @@ class TaxesServiceProvider extends TipoffServiceProvider
     {
         $package
             ->hasPolicies([
-                Tax::class         => TaxPolicy::class,
-                LocationTax::class => LocationTaxPolicy::class
+                Tax::class => TaxPolicy::class,
+                LocationTax::class => LocationTaxPolicy::class,
             ])
             ->hasNovaResources([
                 \Tipoff\Taxes\Nova\LocationTax::class,
-                \Tipoff\Taxes\Nova\Tax::class
+                \Tipoff\Taxes\Nova\Tax::class,
             ])
             ->name('taxes')
             ->hasConfigFile();

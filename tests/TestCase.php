@@ -24,7 +24,7 @@ class TestCase extends BaseTestCase
             TaxesServiceProvider::class,
             LocationsServiceProvider::class,
             NovaCoreServiceProvider::class,
-            NovaPackageServiceProvider::class
+            NovaPackageServiceProvider::class,
         ];
     }
 }

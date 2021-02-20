@@ -12,6 +12,6 @@ class NovaPackageServiceProvider extends BaseNovaPackageServiceProvider
 {
     public static array $packageResources = [
         Tax::class,
-        LocationTax::class
+        LocationTax::class,
     ];
 }

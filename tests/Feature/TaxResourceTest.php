@@ -6,8 +6,8 @@ namespace Tipoff\Taxes\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Taxes\Models\Tax;
-use Tipoff\TestSupport\Models\User;
 use Tipoff\Taxes\Tests\TestCase;
+use Tipoff\TestSupport\Models\User;
 
 class TaxResourceTest extends TestCase
 {
