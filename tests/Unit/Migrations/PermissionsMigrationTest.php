@@ -22,13 +22,11 @@ class PermissionsMigrationTest extends TestCase
             'view taxes',
             'create taxes',
             'update taxes',
-            'delete taxes',
             'view location taxes',
             'create location taxes',
             'update location taxes',
-            'delete location taxes',
         ])->pluck('name');
 
-        $this->assertCount(8, $seededPermissions);
+        $this->assertCount(6, $seededPermissions);
     }
 }
