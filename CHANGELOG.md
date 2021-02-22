@@ -26,3 +26,7 @@ All notable changes to `taxes` will be documented in this file.
 
 - register policy for location tax
 - register nova resource for location tax
+
+## 2.0.2 - 2021-02-22
+
+- update migrations
