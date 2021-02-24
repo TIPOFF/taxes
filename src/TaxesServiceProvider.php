@@ -24,6 +24,10 @@ class TaxesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Taxes\Nova\LocationTax::class,
                 \Tipoff\Taxes\Nova\Tax::class,
             ])
+            ->hasBindings([
+                \Tipoff\Support\Contracts\Taxes\TaxRequest::class => \Tipoff\Taxes\TaxRequest::class,
+                \Tipoff\Support\Contracts\Taxes\TaxRequestItem::class => \Tipoff\Taxes\TaxRequestItem::class,
+            ])
             ->name('taxes')
             ->hasConfigFile();
     }
