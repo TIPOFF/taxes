@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Taxes\Tests\Unit\Policies;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tipoff\Support\Contracts\Models\UserInterface;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Tests\TestCase;
-use Tipoff\Support\Contracts\Models\UserInterface;
 use Tipoff\TestSupport\Models\User;
 
 class TaxPolicyTest extends TestCase
