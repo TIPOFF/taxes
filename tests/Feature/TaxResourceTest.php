@@ -18,7 +18,7 @@ class TaxResourceTest extends TestCase
     {
         Tax::factory()->count(4)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view taxes', true));
 
         $response = $this->getJson('nova-api/taxes')->assertOk();
 

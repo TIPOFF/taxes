@@ -18,7 +18,7 @@ class LocationTaxResourceTest extends TestCase
     {
         LocationTax::factory()->count(1)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view location taxes', true));
 
         $response = $this->getJson('nova-api/location-taxes')->assertOk();
 
