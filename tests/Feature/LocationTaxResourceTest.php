@@ -7,7 +7,7 @@ namespace Tipoff\Taxes\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
+use Tipoff\Authorization\Models\User;
 
 class LocationTaxResourceTest extends TestCase
 {
