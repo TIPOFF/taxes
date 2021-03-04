@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes;
 
+use Tipoff\Support\Contracts\Taxes\TaxRequest;
+use Tipoff\Support\Contracts\Taxes\TaxRequestItem;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 use Tipoff\Taxes\Models\LocationTax;
@@ -25,8 +27,8 @@ class TaxesServiceProvider extends TipoffServiceProvider
                 \Tipoff\Taxes\Nova\Tax::class,
             ])
             ->hasBindings([
-                \Tipoff\Support\Contracts\Taxes\TaxRequest::class => \Tipoff\Taxes\TaxRequest::class,
-                \Tipoff\Support\Contracts\Taxes\TaxRequestItem::class => \Tipoff\Taxes\TaxRequestItem::class,
+                TaxRequest::class => \Tipoff\Taxes\Services\TaxRequest::class,
+                TaxRequestItem::class => \Tipoff\Taxes\Services\TaxRequestItem::class,
             ])
             ->name('taxes')
             ->hasConfigFile();

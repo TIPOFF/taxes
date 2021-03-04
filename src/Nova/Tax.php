@@ -16,6 +16,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 use Tipoff\Support\Nova\BaseResource;
+use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\Tax as TaxModel;
 
 class Tax extends BaseResource
@@ -50,8 +51,8 @@ class Tax extends BaseResource
             Number::make('Percent'),
             Text::make('Title'),
             Select::make('Applies To')->options([
-                TaxModel::APPLIES_TO_BOOKING => 'Booking',
-                TaxModel::APPLIES_TO_PRODUCT => 'Product',
+                TaxCode::BOOKING => 'Booking',
+                TaxCode::PRODUCT => 'Product',
             ])->required(),
 
             new Panel('Data Fields', $this->dataFields()),
