@@ -7,7 +7,6 @@ namespace Tipoff\Taxes\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
 
 class TaxResourceTest extends TestCase
 {
@@ -18,7 +17,7 @@ class TaxResourceTest extends TestCase
     {
         Tax::factory()->count(4)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view taxes', true));
 
         $response = $this->getJson('nova-api/taxes')->assertOk();
 
