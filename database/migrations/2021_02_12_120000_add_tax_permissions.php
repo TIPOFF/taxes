@@ -2,27 +2,21 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
-use Spatie\Permission\Contracts\Permission;
-use Spatie\Permission\PermissionRegistrar;
+use Tipoff\Authorization\Permissions\BasePermissionsMigration;
 
-class AddTaxPermissions extends Migration
+class AddTaxPermissions extends BasePermissionsMigration
 {
     public function up()
     {
-        if (app()->has(Permission::class)) {
-            app(PermissionRegistrar::class)->forgetCachedPermissions();
+        $permissions = [
+            'view taxes',
+            'create taxes',
+            'update taxes',
+            'view location taxes',
+            'create location taxes',
+            'update location taxes',
+        ];
 
-            foreach ([
-                         'view taxes',
-                         'create taxes',
-                         'update taxes',
-                         'view location taxes',
-                         'create location taxes',
-                         'update location taxes',
-                     ] as $name) {
-                app(Permission::class)::findOrCreate($name, null);
-            };
-        }
+        $this->createPermissions($permissions);
     }
 }
