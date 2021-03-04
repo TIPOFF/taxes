@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes\Tests\Unit\Services;
 
-
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Contracts\Taxes\TaxRequest as TaxRequestInterface;
 use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\LocationTax;
@@ -70,10 +68,10 @@ class TaxRequestTest extends TestCase
         /** @var LocationTax $locationTax */
         $locationTax = LocationTax::factory()->create([
             'booking_tax_id' => Tax::factory()->create([
-                'percent' => 5.00
+                'percent' => 5.00,
             ]),
             'product_tax_id' => Tax::factory()->create([
-                'percent' => 10.00
+                'percent' => 10.00,
             ]),
         ]);
 
