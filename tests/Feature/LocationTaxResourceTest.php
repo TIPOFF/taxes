@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Taxes\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tipoff\Authorization\Models\User;
 use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Tests\TestCase;
 
