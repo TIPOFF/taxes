@@ -17,8 +17,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "tipoff/authorization": "^2.3.0",
-        "tipoff/support": "^1.5.5",
-        "tipoff/locations": "^2.3.2"
+        "tipoff/locations": "^2.3.2",
+        "tipoff/support": "^1.5.5"
     },
     "require-dev": {
         "tipoff/test-support": "^1.1.2"

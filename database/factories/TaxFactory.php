@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -6,6 +6,7 @@ namespace Tipoff\Taxes\Database\Factories;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\Tax;
 
 class TaxFactory extends Factory
@@ -31,7 +32,7 @@ class TaxFactory extends Factory
             'name'       => $sentence,
             'title'      => $sentence,
             'percent'    => $this->faker->numberBetween(1, 50),
-            'applies_to' => $this->faker->randomElement(['product', 'booking']),
+            'applies_to' => $this->faker->randomElement(TaxCode::getValues()),
             'creator_id' => randomOrCreate(app('user')),
         ];
     }

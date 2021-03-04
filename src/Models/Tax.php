@@ -8,15 +8,20 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 
+/**
+ * @property string name
+ * @property string title
+ * @property string slug
+ * @property float percent
+ * @property string applies_to
+ */
 class Tax extends BaseModel
 {
     use HasCreator;
     use HasPackageFactory;
 
-    const APPLIES_TO_PRODUCT = 'product';
-    const APPLIES_TO_BOOKING = 'booking';
-
     protected $casts = [
+        'percent' => 'float',
     ];
 
     public function getRouteKeyName()
@@ -37,32 +42,5 @@ class Tax extends BaseModel
     public function locationProductTaxes()
     {
         return $this->hasMany(app('location'), 'product_tax_id');
-    }
-
-    /**
-     * Generate taxes by cart item.
-     *
-     * @param mixed $cartItem
-     * @return int
-     */
-    public function generateTotalTaxesByCartItem($cartItem): int
-    {
-        $amount = $cartItem->amount;
-        $tax = 0;
-
-        if ($cartItem->fee->is_taxed) {
-            $amount += $cartItem->total_fees;
-        }
-
-        switch ($this->applies_to) {
-            case self::APPLIES_TO_PRODUCT:
-                break;
-            case self::APPLIES_TO_BOOKING:
-                $tax = $amount * ($this->percent / 100);
-
-                break;
-        }
-
-        return (int) $tax;
     }
 }
