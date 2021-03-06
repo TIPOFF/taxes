@@ -30,3 +30,7 @@ All notable changes to `taxes` will be documented in this file.
 ## 2.0.2 - 2021-02-22
 
 - update migrations
+
+## 2.0.3 - 2021-03-06
+
+- implement location tax
