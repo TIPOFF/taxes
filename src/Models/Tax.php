@@ -36,11 +36,11 @@ class Tax extends BaseModel
 
     public function locationBookingTaxes()
     {
-        return $this->hasMany(app('location'), 'booking_tax_id');
+        return $this->hasMany(LocationTax::class, 'booking_tax_id');
     }
 
     public function locationProductTaxes()
     {
-        return $this->hasMany(app('location'), 'product_tax_id');
+        return $this->hasMany(LocationTax::class, 'product_tax_id');
     }
 }

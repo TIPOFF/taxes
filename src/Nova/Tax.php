@@ -58,8 +58,8 @@ class Tax extends BaseResource
             new Panel('Data Fields', $this->dataFields()),
 
             nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
-            nova('location') ? HasMany::make('Location Booking Tax', 'locationBookingTaxes', nova('location')) : null,
-            nova('location') ? HasMany::make('Location Product Tax', 'locationProductTaxes', nova('location')) : null,
+            HasMany::make('Location Booking Tax', 'locationBookingTaxes', LocationTax::class),
+            HasMany::make('Location Product Tax', 'locationProductTaxes', LocationTax::class),
 
         ]);
     }
