@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Contracts\Taxes\TaxRequest as TaxRequestInterface;
 use Tipoff\Taxes\Enum\TaxCode;
-use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Services\TaxRequest;
 use Tipoff\Taxes\Tests\TestCase;

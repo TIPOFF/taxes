@@ -9,7 +9,6 @@ use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
-use Tipoff\Taxes\Enum\TaxCode;
 
 /**
  * @property string name
@@ -44,7 +43,6 @@ class Tax extends BaseModel
 
         return $tax;
     }
-
 
     public function getRouteKeyName()
     {
