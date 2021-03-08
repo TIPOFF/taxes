@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -13,12 +14,11 @@ use Tipoff\Taxes\Enum\TaxCode;
 
 /**
  * @property Location location
- * @property Tax bookingTax
- * @property Tax productTax
+ * @property string tax_cde
+ * @property Tax tax
  * // Raw relation ids
  * @property int location_id
- * @property int booking_tax_id
- * @property int product_tax_id
+ * @property int tax_id
  * @property int creator_id
  * @property int updater_id
  */
@@ -31,19 +31,18 @@ class LocationTax extends BaseModel
     public static function findTaxByLocationAndCode(int $locationId, ?string $taxCode = null): ?Tax
     {
         /** @var LocationTax $locationTax */
-        if ($locationTax = static::query()->where('location_id', '=', $locationId)->first()) {
-            if ($taxCode === TaxCode::BOOKING) {
-                return $locationTax->bookingTax;
-            }
+        $locationTax = static::query()
+            ->where('location_id', '=', $locationId)
+            ->where(function (Builder $query) use ($taxCode) {
+                if (is_null($taxCode)) {
+                    $query->whereNull('tax_code');
+                } else {
+                    $query->where('tax_code', '=', $taxCode);
+                }
+            })
+            ->first();
 
-            if ($taxCode === TaxCode::PRODUCT) {
-                return $locationTax->productTax;
-            }
-
-            // TODO - default tax for location?  exception for unexpected tax code?
-        }
-
-        return null;
+        return $locationTax ? $locationTax->tax : null;
     }
 
     //region RELATIONS
@@ -59,17 +58,9 @@ class LocationTax extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bookingTax()
+    public function tax()
     {
-        return $this->belongsTo(Tax::class, 'booking_tax_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function productTax()
-    {
-        return $this->belongsTo(Tax::class, 'product_tax_id');
+        return $this->belongsTo(Tax::class);
     }
 
     //endregion

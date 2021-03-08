@@ -39,7 +39,6 @@ class Tax extends BaseResource
             ID::make()->sortable(),
             Number::make('Percent'),
             Text::make('Name')->sortable(),
-            Text::make('Applies To')->sortable(),
         ]);
     }
 
@@ -50,17 +49,11 @@ class Tax extends BaseResource
             Slug::make('Slug')->from('Name'),
             Number::make('Percent'),
             Text::make('Title'),
-            Select::make('Applies To')->options([
-                TaxCode::BOOKING => 'Booking',
-                TaxCode::PRODUCT => 'Product',
-            ])->required(),
 
             new Panel('Data Fields', $this->dataFields()),
 
             nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
-            HasMany::make('Location Booking Tax', 'locationBookingTaxes', LocationTax::class),
-            HasMany::make('Location Product Tax', 'locationProductTaxes', LocationTax::class),
-
+            HasMany::make('Location Tax', 'locationTaxes', LocationTax::class),
         ]);
     }
 

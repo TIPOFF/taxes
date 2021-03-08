@@ -32,7 +32,6 @@ class TaxFactory extends Factory
             'name'       => $sentence,
             'title'      => $sentence,
             'percent'    => $this->faker->numberBetween(1, 50),
-            'applies_to' => $this->faker->randomElement(TaxCode::getValues()),
             'creator_id' => randomOrCreate(app('user')),
         ];
     }

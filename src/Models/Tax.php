@@ -13,7 +13,6 @@ use Tipoff\Support\Traits\HasPackageFactory;
  * @property string title
  * @property string slug
  * @property float percent
- * @property string applies_to
  */
 class Tax extends BaseModel
 {
@@ -34,13 +33,8 @@ class Tax extends BaseModel
         return $this->hasMany(app('booking'));
     }
 
-    public function locationBookingTaxes()
+    public function locationTaxes()
     {
-        return $this->hasMany(LocationTax::class, 'booking_tax_id');
-    }
-
-    public function locationProductTaxes()
-    {
-        return $this->hasMany(LocationTax::class, 'product_tax_id');
+        return $this->hasMany(LocationTax::class, 'tax_id');
     }
 }

@@ -14,12 +14,15 @@ class CreateLocationTaxesTable extends Migration
     {
         Schema::create('location_taxes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Location::class)->unique();	// NOTE - unique() added -- there should be exactly one record per location!
-            $table->foreignIdFor(Tax::class, 'booking_tax_id')->nullable(); // Location's tax rate for bookings.
-            $table->foreignIdFor(Tax::class, 'product_tax_id')->nullable(); // Different tax rate for products.
+            $table->foreignIdFor(Location::class);
+            $table->string('tax_code');
+
+            $table->foreignIdFor(Tax::class);
             $table->foreignIdFor(app('user'), 'creator_id');
             $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
+
+            $table->unique(['location_id', 'tax_code']);
         });
     }
 }

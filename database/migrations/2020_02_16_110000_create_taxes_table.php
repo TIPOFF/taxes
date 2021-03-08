@@ -16,7 +16,6 @@ class CreateTaxesTable extends Migration
             $table->string('title'); // Shows in book online checkout flow.
             $table->string('slug')->unique()->index();
             $table->unsignedDecimal('percent', 5, 2);
-            $table->string('applies_to')->default('order'); // Application. Definitions include: 'order', 'product', 'booking'
             $table->foreignIdFor(app('user'), 'creator_id');
             $table->timestamps();
         });
