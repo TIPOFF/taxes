@@ -10,7 +10,6 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
-use Tipoff\Taxes\Enum\TaxCode;
 
 /**
  * @property Location location
