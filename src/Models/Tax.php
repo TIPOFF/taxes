@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Tipoff\Taxes\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Taxes\Enum\TaxCode;
 
 /**
  * @property string name
  * @property string title
  * @property string slug
  * @property float percent
- * @property string applies_to
+ * @property string tax_code
+ *
  */
 class Tax extends BaseModel
 {
@@ -23,6 +27,24 @@ class Tax extends BaseModel
     protected $casts = [
         'percent' => 'float',
     ];
+
+    public static function findTaxByLocationAndCode(int $locationId, ?string $taxCode = null): ?Tax
+    {
+        /** @var ?Tax $tax */
+        $tax = static::query()
+            ->where('location_id', '=', $locationId)
+            ->where(function (Builder $query) use ($taxCode) {
+                if (is_null($taxCode)) {
+                    $query->whereNull('tax_code');
+                } else {
+                    $query->where('tax_code', '=', $taxCode);
+                }
+            })
+            ->first();
+
+        return $tax;
+    }
+
 
     public function getRouteKeyName()
     {
@@ -34,13 +56,8 @@ class Tax extends BaseModel
         return $this->hasMany(app('booking'));
     }
 
-    public function locationBookingTaxes()
+    public function location()
     {
-        return $this->hasMany(LocationTax::class, 'booking_tax_id');
-    }
-
-    public function locationProductTaxes()
-    {
-        return $this->hasMany(LocationTax::class, 'product_tax_id');
+        return $this->belongsTo(Location::class);
     }
 }
