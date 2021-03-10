@@ -6,7 +6,6 @@ namespace Tipoff\Taxes\Services;
 
 use Illuminate\Support\Collection;
 use Tipoff\Support\Contracts\Taxes\TaxRequest as TaxRequestInterface;
-use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Models\Tax;
 
 class TaxRequest implements TaxRequestInterface
@@ -44,7 +43,7 @@ class TaxRequest implements TaxRequestInterface
         $this->taxItems->each(function (TaxRequestItem $item) {
             // Use Location + TaxCode to find Tax Rate
             /** @var Tax $tax */
-            if ($tax = LocationTax::findTaxByLocationAndCode($item->getLocationId(), $item->getTaxCode())) {
+            if ($tax = Tax::findTaxByLocationAndCode($item->getLocationId(), $item->getTaxCode())) {
                 $item->setTaxDescription($tax->title);
                 $item->setTax((int) (($item->getAmount() * $tax->percent) / 100));
             }

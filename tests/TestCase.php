@@ -6,12 +6,13 @@ namespace Tipoff\Taxes\Tests;
 
 use Laravel\Nova\NovaCoreServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
+use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Locations\LocationsServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\Taxes\TaxesServiceProvider;
-use Tipoff\Taxes\Tests\Support\Providers\NovaPackageServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
+use Tipoff\TestSupport\Providers\NovaPackageServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -19,8 +20,10 @@ class TestCase extends BaseTestCase
     {
         return [
             SupportServiceProvider::class,
+            AddressesServiceProvider::class,
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
+            AddressesServiceProvider::class,
             TaxesServiceProvider::class,
             LocationsServiceProvider::class,
             NovaCoreServiceProvider::class,
