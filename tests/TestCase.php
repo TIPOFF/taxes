@@ -23,7 +23,6 @@ class TestCase extends BaseTestCase
             AddressesServiceProvider::class,
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
-            AddressesServiceProvider::class,
             TaxesServiceProvider::class,
             LocationsServiceProvider::class,
             NovaCoreServiceProvider::class,
