@@ -9,9 +9,9 @@ class AddTaxPermissions extends BasePermissionsMigration
     public function up()
     {
         $permissions = [
-            'view taxes',
-            'create taxes',
-            'update taxes',
+            'view taxes' => ['Owner', 'Staff'],
+            'create taxes' => ['Owner'],
+            'update taxes' => ['Owner'],
         ];
 
         $this->createPermissions($permissions);

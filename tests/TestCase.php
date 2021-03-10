@@ -20,6 +20,7 @@ class TestCase extends BaseTestCase
     {
         return [
             SupportServiceProvider::class,
+            AddressesServiceProvider::class,
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
             AddressesServiceProvider::class,
