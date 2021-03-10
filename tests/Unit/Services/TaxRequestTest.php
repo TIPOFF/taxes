@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Taxes\Tests\Unit\Services;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tipoff\Locations\Models\Location;
 use Tipoff\Support\Contracts\Taxes\TaxRequest as TaxRequestInterface;
 use Tipoff\Taxes\Enum\TaxCode;
-use Tipoff\Taxes\Models\LocationTax;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Services\TaxRequest;
 use Tipoff\Taxes\Tests\TestCase;
@@ -65,14 +65,18 @@ class TaxRequestTest extends TestCase
     /** @test */
     public function calculate_tax()
     {
-        /** @var LocationTax $locationTax */
-        $locationTax = LocationTax::factory()->create([
-            'booking_tax_id' => Tax::factory()->create([
-                'percent' => 5.00,
-            ]),
-            'product_tax_id' => Tax::factory()->create([
-                'percent' => 10.00,
-            ]),
+        $location = Location::factory()->create();
+
+        Tax::factory()->create([
+            'location_id' => $location,
+            'tax_code' => TaxCode::BOOKING,
+            'percent' => 5.00,
+        ]);
+
+        Tax::factory()->create([
+            'location_id' => $location,
+            'tax_code' => TaxCode::PRODUCT,
+            'percent' => 10.00,
         ]);
 
         /** @var TaxRequestInterface $service */
@@ -81,9 +85,9 @@ class TaxRequestTest extends TestCase
         /** @var TaxRequest $taxRequest */
         $taxRequest = $service::createTaxRequest();
 
-        $taxRequest->createTaxRequestItem('A', $locationTax->location_id, TaxCode::PRODUCT, 1000);
-        $taxRequest->createTaxRequestItem('B', $locationTax->location_id, TaxCode::BOOKING, 2000);
-        $taxRequest->createTaxRequestItem('C', $locationTax->location_id, null, 3000);
+        $taxRequest->createTaxRequestItem('A', $location->id, TaxCode::PRODUCT, 1000);
+        $taxRequest->createTaxRequestItem('B', $location->id, TaxCode::BOOKING, 2000);
+        $taxRequest->createTaxRequestItem('C', $location->id, null, 3000);
 
         $taxRequest->calculateTax();
 
