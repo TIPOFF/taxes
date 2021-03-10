@@ -12,9 +12,6 @@ class AddTaxPermissions extends BasePermissionsMigration
             'view taxes',
             'create taxes',
             'update taxes',
-            'view location taxes',
-            'create location taxes',
-            'update location taxes',
         ];
 
         $this->createPermissions($permissions);
