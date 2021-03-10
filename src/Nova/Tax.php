@@ -15,6 +15,7 @@ use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
+use Tipoff\Locations\Nova\Location;
 use Tipoff\Support\Nova\BaseResource;
 use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\Tax as TaxModel;
@@ -39,7 +40,7 @@ class Tax extends BaseResource
             ID::make()->sortable(),
             Number::make('Percent'),
             Text::make('Name')->sortable(),
-            Text::make('Applies To')->sortable(),
+            Text::make('Tax Code')->sortable(),
         ]);
     }
 
@@ -50,17 +51,15 @@ class Tax extends BaseResource
             Slug::make('Slug')->from('Name'),
             Number::make('Percent'),
             Text::make('Title'),
-            Select::make('Applies To')->options([
+            Select::make('Tax Code')->options([
                 TaxCode::BOOKING => 'Booking',
                 TaxCode::PRODUCT => 'Product',
             ])->required(),
 
             new Panel('Data Fields', $this->dataFields()),
 
+            BelongsTo::make('Location', 'location', Location::class),
             nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
-            HasMany::make('Location Booking Tax', 'locationBookingTaxes', LocationTax::class),
-            HasMany::make('Location Product Tax', 'locationProductTaxes', LocationTax::class),
-
         ]);
     }
 
