@@ -34,3 +34,9 @@ All notable changes to `taxes` will be documented in this file.
 ## 2.0.3 - 2021-03-06
 
 - implement location tax
+
+## 2.1.0 - 2021-03-12
+
+- consolidate location tax
+- migrate permissions
+- grant permissions to roles
