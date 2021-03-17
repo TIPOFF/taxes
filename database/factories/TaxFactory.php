@@ -12,18 +12,8 @@ use Tipoff\Taxes\Models\Tax;
 
 class TaxFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Tax::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         $sentence = $this->faker->sentence;
