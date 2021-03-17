@@ -20,7 +20,7 @@ class CreateTaxesTable extends Migration
             $table->string('slug')->unique()->index();
             $table->unsignedDecimal('percent', 5, 2);
             $table->foreignIdFor(app('user'), 'creator_id');
-            $table->timestamps();
+            $table->timestamp('created_at');
 
             // This pairing must have at most one value
             $table->unique(['location_id', 'tax_code']);
