@@ -19,13 +19,13 @@ class TaxFactory extends Factory
         $sentence = $this->faker->sentence;
 
         return [
-            'slug'       => Str::slug($sentence),
-            'name'       => $sentence,
-            'title'      => $sentence,
-            'percent'    => $this->faker->numberBetween(1, 50),
-            'tax_code'   => $this->faker->randomElement(TaxCode::getValues()),
-            'location_id'=> Location::factory()->create(),
-            'creator_id' => randomOrCreate(app('user')),
+            'slug'          => Str::slug($sentence),
+            'name'          => $sentence,
+            'title'         => $sentence,
+            'percent'       => $this->faker->numberBetween(1, 50),
+            'tax_code'      => $this->faker->randomElement(TaxCode::getValues()),
+            'location_id'   => Location::factory()->create(),
+            'creator_id'    => randomOrCreate(app('user')),
         ];
     }
 }

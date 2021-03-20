@@ -56,6 +56,6 @@ class Tax extends BaseModel
 
     public function location()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(app('location'));
     }
 }
