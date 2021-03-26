@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Tipoff\Taxes\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tipoff\Authorization\Models\User;
 use Tipoff\Taxes\Models\Tax;
 use Tipoff\Taxes\Tests\TestCase;
-use Tipoff\Authorization\Models\User;
 
 class TaxResourceTest extends TestCase
 {
-    
     use DatabaseTransactions;
 
     private const NOVA_ROUTE = 'nova-api/taxes';
