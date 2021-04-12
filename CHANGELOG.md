@@ -40,3 +40,7 @@ All notable changes to `taxes` will be documented in this file.
 - consolidate location tax
 - migrate permissions
 - grant permissions to roles
+
+## 2.2.0 - 2021-04-11
+
+- bump package dependencies
