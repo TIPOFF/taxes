@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Tipoff\Taxes\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -18,8 +20,6 @@ use Tipoff\Locations\Nova\Location;
 use Tipoff\Support\Nova\BaseResource;
 use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\Tax as TaxModel;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
 
 class Tax extends BaseResource
 {
@@ -72,7 +72,7 @@ class Tax extends BaseResource
         );
     }
 
-    protected static function afterValidation(NovaRequest $request,$validator)
+    protected static function afterValidation(NovaRequest $request, $validator)
     {
         $location_id = $request->post('location');
         $unique = Rule::unique('taxes', 'tax_code')->where(
