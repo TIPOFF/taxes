@@ -18,6 +18,8 @@ use Tipoff\Locations\Nova\Location;
 use Tipoff\Support\Nova\BaseResource;
 use Tipoff\Taxes\Enum\TaxCode;
 use Tipoff\Taxes\Models\Tax as TaxModel;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class Tax extends BaseResource
 {
@@ -46,14 +48,14 @@ class Tax extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            Text::make('Name')->required(),
-            Slug::make('Slug')->from('Name'),
-            Number::make('Percent'),
-            Text::make('Title'),
+            Text::make('Name')->rules('required')->creationRules('unique:taxes,name')->updateRules('unique:taxes,name,{{resourceId}}'),
+            Slug::make('Slug')->from('Name')->rules('required')->creationRules('unique:taxes,slug')->updateRules('unique:taxes,slug,{{resourceId}}'),
+            Number::make('Percent')->rules('required'),
+            Text::make('Title')->rules('required'),
             Select::make('Tax Code')->options([
                 TaxCode::BOOKING => 'Booking',
                 TaxCode::PRODUCT => 'Product',
-            ])->required(),
+            ])->rules('required'),
 
             new Panel('Data Fields', $this->dataFields()),
 
@@ -68,5 +70,31 @@ class Tax extends BaseResource
             parent::dataFields(),
             $this->creatorDataFields(),
         );
+    }
+
+    protected static function afterValidation(NovaRequest $request,$validator)
+    {
+        $location_id = $request->post('location');
+        $unique = Rule::unique('taxes', 'tax_code')->where(
+            'location_id',
+            $location_id
+        );
+
+        if ($request->route('resourceId')) {
+            $unique->ignore($request->route('resourceId'));
+        }
+
+        $uniqueValidator = Validator::make($request->only('tax_code'), [
+            'tax_code' => [$unique],
+        ]);
+
+        if ($uniqueValidator->fails()) {
+            $validator
+                ->errors()
+                ->add(
+                    'tax_code',
+                    'Tax Code is already taken with this Location option'
+                );
+        }
     }
 }
