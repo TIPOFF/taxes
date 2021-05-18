@@ -55,12 +55,18 @@ class Tax extends BaseResource
             Select::make('Tax Code')->options([
                 TaxCode::BOOKING => 'Booking',
                 TaxCode::PRODUCT => 'Product',
-            ])->rules('required'),
+            ])
+            ->rules('required')
+            ->creationRules("unique:taxes,tax_code,NULL,id,location_id,$request->location")
+            ->updateRules("unique:taxes,tax_code,{{resourceId}},id,location_id,$request->location"),
 
             new Panel('Data Fields', $this->dataFields()),
 
-            BelongsTo::make('Location', 'location', Location::class),
-            nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
+            BelongsTo::make('Location', 'location', Location::class)
+            ->creationRules("unique:taxes,location_id,NULL,id,tax_code,$request->tax_code")
+            ->updateRules("unique:taxes,location_id,{{resourceId}},id,tax_code,$request->tax_code"),
+
+            //nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
         ]);
     }
 

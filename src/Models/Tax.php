@@ -49,10 +49,10 @@ class Tax extends BaseModel
         return 'slug';
     }
 
-    public function bookings()
+    /*public function bookings()
     {
         return $this->hasMany(app('booking'));
-    }
+    }*/
 
     public function location()
     {
